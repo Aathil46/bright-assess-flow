@@ -10,33 +10,187 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as PrincipalRouteImport } from './routes/principal'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as StudentRouteImport } from './routes/student'
+import { Route as TeacherRouteImport } from './routes/teacher'
+import { Route as TeacherDashboardRouteImport } from './routes/teacher.dashboard'
+import { Route as TeacherAssessmentsIndexRouteImport } from './routes/teacher.assessments.index'
+import { Route as TeacherAssessmentsNewRouteImport } from './routes/teacher.assessments.new'
+import { Route as TeacherClassesIndexRouteImport } from './routes/teacher.classes.index'
+import { Route as TeacherClassesClassIdRouteImport } from './routes/teacher.classes.$classId'
+import { Route as TeacherMaterialsIndexRouteImport } from './routes/teacher.materials.index'
+import { Route as TeacherMaterialsMaterialIdRouteImport } from './routes/teacher.materials.$materialId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrincipalRoute = PrincipalRouteImport.update({
+  id: '/principal',
+  path: '/principal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentRoute = StudentRouteImport.update({
+  id: '/student',
+  path: '/student',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeacherRoute = TeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeacherDashboardRoute = TeacherDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherAssessmentsIndexRoute = TeacherAssessmentsIndexRouteImport.update({
+  id: '/assessments/',
+  path: '/assessments/',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherAssessmentsNewRoute = TeacherAssessmentsNewRouteImport.update({
+  id: '/assessments/new',
+  path: '/assessments/new',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherClassesIndexRoute = TeacherClassesIndexRouteImport.update({
+  id: '/classes/',
+  path: '/classes/',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherClassesClassIdRoute = TeacherClassesClassIdRouteImport.update({
+  id: '/classes/$classId',
+  path: '/classes/$classId',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherMaterialsIndexRoute = TeacherMaterialsIndexRouteImport.update({
+  id: '/materials/',
+  path: '/materials/',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherMaterialsMaterialIdRoute =
+  TeacherMaterialsMaterialIdRouteImport.update({
+    id: '/materials/$materialId',
+    path: '/materials/$materialId',
+    getParentRoute: () => TeacherRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/principal': typeof PrincipalRoute
+  '/signup': typeof SignupRoute
+  '/student': typeof StudentRoute
+  '/teacher': typeof TeacherRouteWithChildren
+  '/teacher/dashboard': typeof TeacherDashboardRoute
+  '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
+  '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
+  '/teacher/materials/$materialId': typeof TeacherMaterialsMaterialIdRoute
+  '/teacher/assessments/': typeof TeacherAssessmentsIndexRoute
+  '/teacher/classes/': typeof TeacherClassesIndexRoute
+  '/teacher/materials/': typeof TeacherMaterialsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/principal': typeof PrincipalRoute
+  '/signup': typeof SignupRoute
+  '/student': typeof StudentRoute
+  '/teacher': typeof TeacherRouteWithChildren
+  '/teacher/dashboard': typeof TeacherDashboardRoute
+  '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
+  '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
+  '/teacher/materials/$materialId': typeof TeacherMaterialsMaterialIdRoute
+  '/teacher/assessments': typeof TeacherAssessmentsIndexRoute
+  '/teacher/classes': typeof TeacherClassesIndexRoute
+  '/teacher/materials': typeof TeacherMaterialsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/principal': typeof PrincipalRoute
+  '/signup': typeof SignupRoute
+  '/student': typeof StudentRoute
+  '/teacher': typeof TeacherRouteWithChildren
+  '/teacher/dashboard': typeof TeacherDashboardRoute
+  '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
+  '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
+  '/teacher/materials/$materialId': typeof TeacherMaterialsMaterialIdRoute
+  '/teacher/assessments/': typeof TeacherAssessmentsIndexRoute
+  '/teacher/classes/': typeof TeacherClassesIndexRoute
+  '/teacher/materials/': typeof TeacherMaterialsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/forgot-password'
+    | '/principal'
+    | '/signup'
+    | '/student'
+    | '/teacher'
+    | '/teacher/dashboard'
+    | '/teacher/assessments/new'
+    | '/teacher/classes/$classId'
+    | '/teacher/materials/$materialId'
+    | '/teacher/assessments/'
+    | '/teacher/classes/'
+    | '/teacher/materials/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/principal'
+    | '/signup'
+    | '/student'
+    | '/teacher'
+    | '/teacher/dashboard'
+    | '/teacher/assessments/new'
+    | '/teacher/classes/$classId'
+    | '/teacher/materials/$materialId'
+    | '/teacher/assessments'
+    | '/teacher/classes'
+    | '/teacher/materials'
+  id:
+    | '__root__'
+    | '/'
+    | '/forgot-password'
+    | '/principal'
+    | '/signup'
+    | '/student'
+    | '/teacher'
+    | '/teacher/dashboard'
+    | '/teacher/assessments/new'
+    | '/teacher/classes/$classId'
+    | '/teacher/materials/$materialId'
+    | '/teacher/assessments/'
+    | '/teacher/classes/'
+    | '/teacher/materials/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  PrincipalRoute: typeof PrincipalRoute
+  SignupRoute: typeof SignupRoute
+  StudentRoute: typeof StudentRoute
+  TeacherRoute: typeof TeacherRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +202,123 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/principal': {
+      id: '/principal'
+      path: '/principal'
+      fullPath: '/principal'
+      preLoaderRoute: typeof PrincipalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student': {
+      id: '/student'
+      path: '/student'
+      fullPath: '/student'
+      preLoaderRoute: typeof StudentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teacher': {
+      id: '/teacher'
+      path: '/teacher'
+      fullPath: '/teacher'
+      preLoaderRoute: typeof TeacherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teacher/dashboard': {
+      id: '/teacher/dashboard'
+      path: '/dashboard'
+      fullPath: '/teacher/dashboard'
+      preLoaderRoute: typeof TeacherDashboardRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/assessments/': {
+      id: '/teacher/assessments/'
+      path: '/assessments'
+      fullPath: '/teacher/assessments/'
+      preLoaderRoute: typeof TeacherAssessmentsIndexRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/assessments/new': {
+      id: '/teacher/assessments/new'
+      path: '/assessments/new'
+      fullPath: '/teacher/assessments/new'
+      preLoaderRoute: typeof TeacherAssessmentsNewRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/classes/': {
+      id: '/teacher/classes/'
+      path: '/classes'
+      fullPath: '/teacher/classes/'
+      preLoaderRoute: typeof TeacherClassesIndexRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/classes/$classId': {
+      id: '/teacher/classes/$classId'
+      path: '/classes/$classId'
+      fullPath: '/teacher/classes/$classId'
+      preLoaderRoute: typeof TeacherClassesClassIdRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/materials/': {
+      id: '/teacher/materials/'
+      path: '/materials'
+      fullPath: '/teacher/materials/'
+      preLoaderRoute: typeof TeacherMaterialsIndexRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/materials/$materialId': {
+      id: '/teacher/materials/$materialId'
+      path: '/materials/$materialId'
+      fullPath: '/teacher/materials/$materialId'
+      preLoaderRoute: typeof TeacherMaterialsMaterialIdRouteImport
+      parentRoute: typeof TeacherRoute
+    }
   }
 }
 
+interface TeacherRouteChildren {
+  TeacherDashboardRoute: typeof TeacherDashboardRoute
+  TeacherAssessmentsNewRoute: typeof TeacherAssessmentsNewRoute
+  TeacherClassesClassIdRoute: typeof TeacherClassesClassIdRoute
+  TeacherMaterialsMaterialIdRoute: typeof TeacherMaterialsMaterialIdRoute
+  TeacherAssessmentsIndexRoute: typeof TeacherAssessmentsIndexRoute
+  TeacherClassesIndexRoute: typeof TeacherClassesIndexRoute
+  TeacherMaterialsIndexRoute: typeof TeacherMaterialsIndexRoute
+}
+
+const TeacherRouteChildren: TeacherRouteChildren = {
+  TeacherDashboardRoute: TeacherDashboardRoute,
+  TeacherAssessmentsNewRoute: TeacherAssessmentsNewRoute,
+  TeacherClassesClassIdRoute: TeacherClassesClassIdRoute,
+  TeacherMaterialsMaterialIdRoute: TeacherMaterialsMaterialIdRoute,
+  TeacherAssessmentsIndexRoute: TeacherAssessmentsIndexRoute,
+  TeacherClassesIndexRoute: TeacherClassesIndexRoute,
+  TeacherMaterialsIndexRoute: TeacherMaterialsIndexRoute,
+}
+
+const TeacherRouteWithChildren =
+  TeacherRoute._addFileChildren(TeacherRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  PrincipalRoute: PrincipalRoute,
+  SignupRoute: SignupRoute,
+  StudentRoute: StudentRoute,
+  TeacherRoute: TeacherRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
