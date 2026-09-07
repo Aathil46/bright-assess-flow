@@ -109,7 +109,7 @@ const materialMeta: Record<
 export function MaterialStatusPill({ status }: { status: MaterialStatus }) {
   const m = materialMeta[status];
   return (
-    <Pill tone={m.tone} icon={m.icon} spin={m.spin}>
+    <Pill tone={m.tone} icon={m.icon} spin={m.spin ?? false}>
       {m.label}
     </Pill>
   );
