@@ -15,7 +15,14 @@ import { Route as PrincipalRouteImport } from './routes/principal'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as TeacherRouteImport } from './routes/teacher'
+import { Route as PrincipalIndexRouteImport } from './routes/principal.index'
+import { Route as StudentIndexRouteImport } from './routes/student.index'
+import { Route as StudentClassesRouteImport } from './routes/student.classes'
+import { Route as StudentDashboardRouteImport } from './routes/student.dashboard'
+import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as TeacherDashboardRouteImport } from './routes/teacher.dashboard'
+import { Route as TeacherProfileRouteImport } from './routes/teacher.profile'
+import { Route as StudentAssessmentsIndexRouteImport } from './routes/student.assessments.index'
 import { Route as TeacherAnalyticsIndexRouteImport } from './routes/teacher.analytics.index'
 import { Route as TeacherAnalyticsGapsRouteImport } from './routes/teacher.analytics.gaps'
 import { Route as TeacherAssessmentsIndexRouteImport } from './routes/teacher.assessments.index'
@@ -56,10 +63,45 @@ const TeacherRoute = TeacherRouteImport.update({
   path: '/teacher',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrincipalIndexRoute = PrincipalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PrincipalRoute,
+} as any)
+const StudentIndexRoute = StudentIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentClassesRoute = StudentClassesRouteImport.update({
+  id: '/classes',
+  path: '/classes',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentDashboardRoute = StudentDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => StudentRoute,
+} as any)
+const TeacherIndexRoute = TeacherIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const TeacherDashboardRoute = TeacherDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherProfileRoute = TeacherProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const StudentAssessmentsIndexRoute = StudentAssessmentsIndexRouteImport.update({
+  id: '/assessments/',
+  path: '/assessments/',
+  getParentRoute: () => StudentRoute,
 } as any)
 const TeacherAnalyticsIndexRoute = TeacherAnalyticsIndexRouteImport.update({
   id: '/analytics/',
@@ -112,16 +154,23 @@ const TeacherMaterialsMaterialIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
-  '/principal': typeof PrincipalRoute
+  '/principal': typeof PrincipalRouteWithChildren
   '/signup': typeof SignupRoute
-  '/student': typeof StudentRoute
+  '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
+  '/student/classes': typeof StudentClassesRoute
+  '/student/dashboard': typeof StudentDashboardRoute
   '/teacher/dashboard': typeof TeacherDashboardRoute
+  '/teacher/profile': typeof TeacherProfileRoute
+  '/principal/': typeof PrincipalIndexRoute
+  '/student/': typeof StudentIndexRoute
+  '/teacher/': typeof TeacherIndexRoute
   '/teacher/analytics/gaps': typeof TeacherAnalyticsGapsRoute
   '/teacher/assessments/$assessmentId': typeof TeacherAssessmentsAssessmentIdRoute
   '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
   '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
   '/teacher/materials/$materialId': typeof TeacherMaterialsMaterialIdRoute
+  '/student/assessments/': typeof StudentAssessmentsIndexRoute
   '/teacher/analytics/': typeof TeacherAnalyticsIndexRoute
   '/teacher/assessments/': typeof TeacherAssessmentsIndexRoute
   '/teacher/classes/': typeof TeacherClassesIndexRoute
@@ -130,16 +179,20 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
-  '/principal': typeof PrincipalRoute
   '/signup': typeof SignupRoute
-  '/student': typeof StudentRoute
-  '/teacher': typeof TeacherRouteWithChildren
+  '/student/classes': typeof StudentClassesRoute
+  '/student/dashboard': typeof StudentDashboardRoute
   '/teacher/dashboard': typeof TeacherDashboardRoute
+  '/teacher/profile': typeof TeacherProfileRoute
+  '/principal': typeof PrincipalIndexRoute
+  '/student': typeof StudentIndexRoute
+  '/teacher': typeof TeacherIndexRoute
   '/teacher/analytics/gaps': typeof TeacherAnalyticsGapsRoute
   '/teacher/assessments/$assessmentId': typeof TeacherAssessmentsAssessmentIdRoute
   '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
   '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
   '/teacher/materials/$materialId': typeof TeacherMaterialsMaterialIdRoute
+  '/student/assessments': typeof StudentAssessmentsIndexRoute
   '/teacher/analytics': typeof TeacherAnalyticsIndexRoute
   '/teacher/assessments': typeof TeacherAssessmentsIndexRoute
   '/teacher/classes': typeof TeacherClassesIndexRoute
@@ -149,16 +202,23 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
-  '/principal': typeof PrincipalRoute
+  '/principal': typeof PrincipalRouteWithChildren
   '/signup': typeof SignupRoute
-  '/student': typeof StudentRoute
+  '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
+  '/student/classes': typeof StudentClassesRoute
+  '/student/dashboard': typeof StudentDashboardRoute
   '/teacher/dashboard': typeof TeacherDashboardRoute
+  '/teacher/profile': typeof TeacherProfileRoute
+  '/principal/': typeof PrincipalIndexRoute
+  '/student/': typeof StudentIndexRoute
+  '/teacher/': typeof TeacherIndexRoute
   '/teacher/analytics/gaps': typeof TeacherAnalyticsGapsRoute
   '/teacher/assessments/$assessmentId': typeof TeacherAssessmentsAssessmentIdRoute
   '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
   '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
   '/teacher/materials/$materialId': typeof TeacherMaterialsMaterialIdRoute
+  '/student/assessments/': typeof StudentAssessmentsIndexRoute
   '/teacher/analytics/': typeof TeacherAnalyticsIndexRoute
   '/teacher/assessments/': typeof TeacherAssessmentsIndexRoute
   '/teacher/classes/': typeof TeacherClassesIndexRoute
@@ -173,12 +233,19 @@ export interface FileRouteTypes {
     | '/signup'
     | '/student'
     | '/teacher'
+    | '/student/classes'
+    | '/student/dashboard'
     | '/teacher/dashboard'
+    | '/teacher/profile'
+    | '/principal/'
+    | '/student/'
+    | '/teacher/'
     | '/teacher/analytics/gaps'
     | '/teacher/assessments/$assessmentId'
     | '/teacher/assessments/new'
     | '/teacher/classes/$classId'
     | '/teacher/materials/$materialId'
+    | '/student/assessments/'
     | '/teacher/analytics/'
     | '/teacher/assessments/'
     | '/teacher/classes/'
@@ -187,16 +254,20 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/forgot-password'
-    | '/principal'
     | '/signup'
+    | '/student/classes'
+    | '/student/dashboard'
+    | '/teacher/dashboard'
+    | '/teacher/profile'
+    | '/principal'
     | '/student'
     | '/teacher'
-    | '/teacher/dashboard'
     | '/teacher/analytics/gaps'
     | '/teacher/assessments/$assessmentId'
     | '/teacher/assessments/new'
     | '/teacher/classes/$classId'
     | '/teacher/materials/$materialId'
+    | '/student/assessments'
     | '/teacher/analytics'
     | '/teacher/assessments'
     | '/teacher/classes'
@@ -209,12 +280,19 @@ export interface FileRouteTypes {
     | '/signup'
     | '/student'
     | '/teacher'
+    | '/student/classes'
+    | '/student/dashboard'
     | '/teacher/dashboard'
+    | '/teacher/profile'
+    | '/principal/'
+    | '/student/'
+    | '/teacher/'
     | '/teacher/analytics/gaps'
     | '/teacher/assessments/$assessmentId'
     | '/teacher/assessments/new'
     | '/teacher/classes/$classId'
     | '/teacher/materials/$materialId'
+    | '/student/assessments/'
     | '/teacher/analytics/'
     | '/teacher/assessments/'
     | '/teacher/classes/'
@@ -224,9 +302,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
-  PrincipalRoute: typeof PrincipalRoute
+  PrincipalRoute: typeof PrincipalRouteWithChildren
   SignupRoute: typeof SignupRoute
-  StudentRoute: typeof StudentRoute
+  StudentRoute: typeof StudentRouteWithChildren
   TeacherRoute: typeof TeacherRouteWithChildren
 }
 
@@ -274,12 +352,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeacherRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/principal/': {
+      id: '/principal/'
+      path: '/'
+      fullPath: '/principal/'
+      preLoaderRoute: typeof PrincipalIndexRouteImport
+      parentRoute: typeof PrincipalRoute
+    }
+    '/student/': {
+      id: '/student/'
+      path: '/'
+      fullPath: '/student/'
+      preLoaderRoute: typeof StudentIndexRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/classes': {
+      id: '/student/classes'
+      path: '/classes'
+      fullPath: '/student/classes'
+      preLoaderRoute: typeof StudentClassesRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/dashboard': {
+      id: '/student/dashboard'
+      path: '/dashboard'
+      fullPath: '/student/dashboard'
+      preLoaderRoute: typeof StudentDashboardRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/teacher/': {
+      id: '/teacher/'
+      path: '/'
+      fullPath: '/teacher/'
+      preLoaderRoute: typeof TeacherIndexRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/teacher/dashboard': {
       id: '/teacher/dashboard'
       path: '/dashboard'
       fullPath: '/teacher/dashboard'
       preLoaderRoute: typeof TeacherDashboardRouteImport
       parentRoute: typeof TeacherRoute
+    }
+    '/teacher/profile': {
+      id: '/teacher/profile'
+      path: '/profile'
+      fullPath: '/teacher/profile'
+      preLoaderRoute: typeof TeacherProfileRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/student/assessments/': {
+      id: '/student/assessments/'
+      path: '/assessments'
+      fullPath: '/student/assessments/'
+      preLoaderRoute: typeof StudentAssessmentsIndexRouteImport
+      parentRoute: typeof StudentRoute
     }
     '/teacher/analytics/': {
       id: '/teacher/analytics/'
@@ -347,8 +474,39 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface PrincipalRouteChildren {
+  PrincipalIndexRoute: typeof PrincipalIndexRoute
+}
+
+const PrincipalRouteChildren: PrincipalRouteChildren = {
+  PrincipalIndexRoute: PrincipalIndexRoute,
+}
+
+const PrincipalRouteWithChildren = PrincipalRoute._addFileChildren(
+  PrincipalRouteChildren,
+)
+
+interface StudentRouteChildren {
+  StudentClassesRoute: typeof StudentClassesRoute
+  StudentDashboardRoute: typeof StudentDashboardRoute
+  StudentIndexRoute: typeof StudentIndexRoute
+  StudentAssessmentsIndexRoute: typeof StudentAssessmentsIndexRoute
+}
+
+const StudentRouteChildren: StudentRouteChildren = {
+  StudentClassesRoute: StudentClassesRoute,
+  StudentDashboardRoute: StudentDashboardRoute,
+  StudentIndexRoute: StudentIndexRoute,
+  StudentAssessmentsIndexRoute: StudentAssessmentsIndexRoute,
+}
+
+const StudentRouteWithChildren =
+  StudentRoute._addFileChildren(StudentRouteChildren)
+
 interface TeacherRouteChildren {
   TeacherDashboardRoute: typeof TeacherDashboardRoute
+  TeacherProfileRoute: typeof TeacherProfileRoute
+  TeacherIndexRoute: typeof TeacherIndexRoute
   TeacherAnalyticsGapsRoute: typeof TeacherAnalyticsGapsRoute
   TeacherAssessmentsAssessmentIdRoute: typeof TeacherAssessmentsAssessmentIdRoute
   TeacherAssessmentsNewRoute: typeof TeacherAssessmentsNewRoute
@@ -362,6 +520,8 @@ interface TeacherRouteChildren {
 
 const TeacherRouteChildren: TeacherRouteChildren = {
   TeacherDashboardRoute: TeacherDashboardRoute,
+  TeacherProfileRoute: TeacherProfileRoute,
+  TeacherIndexRoute: TeacherIndexRoute,
   TeacherAnalyticsGapsRoute: TeacherAnalyticsGapsRoute,
   TeacherAssessmentsAssessmentIdRoute: TeacherAssessmentsAssessmentIdRoute,
   TeacherAssessmentsNewRoute: TeacherAssessmentsNewRoute,
@@ -379,9 +539,9 @@ const TeacherRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
-  PrincipalRoute: PrincipalRoute,
+  PrincipalRoute: PrincipalRouteWithChildren,
   SignupRoute: SignupRoute,
-  StudentRoute: StudentRoute,
+  StudentRoute: StudentRouteWithChildren,
   TeacherRoute: TeacherRouteWithChildren,
 }
 export const routeTree = rootRouteImport
