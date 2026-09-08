@@ -23,6 +23,11 @@ import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as TeacherDashboardRouteImport } from './routes/teacher.dashboard'
 import { Route as TeacherProfileRouteImport } from './routes/teacher.profile'
 import { Route as StudentAssessmentsIndexRouteImport } from './routes/student.assessments.index'
+import { Route as StudentAssessmentsAssessmentIdRouteImport } from './routes/student.assessments.$assessmentId'
+import { Route as StudentPracticeIndexRouteImport } from './routes/student.practice.index'
+import { Route as StudentPracticeConceptIdRouteImport } from './routes/student.practice.$conceptId'
+import { Route as StudentResultsIndexRouteImport } from './routes/student.results.index'
+import { Route as StudentResultsAssessmentIdRouteImport } from './routes/student.results.$assessmentId'
 import { Route as TeacherAnalyticsIndexRouteImport } from './routes/teacher.analytics.index'
 import { Route as TeacherAnalyticsGapsRouteImport } from './routes/teacher.analytics.gaps'
 import { Route as TeacherAssessmentsIndexRouteImport } from './routes/teacher.assessments.index'
@@ -103,6 +108,34 @@ const StudentAssessmentsIndexRoute = StudentAssessmentsIndexRouteImport.update({
   path: '/assessments/',
   getParentRoute: () => StudentRoute,
 } as any)
+const StudentAssessmentsAssessmentIdRoute =
+  StudentAssessmentsAssessmentIdRouteImport.update({
+    id: '/assessments/$assessmentId',
+    path: '/assessments/$assessmentId',
+    getParentRoute: () => StudentRoute,
+  } as any)
+const StudentPracticeIndexRoute = StudentPracticeIndexRouteImport.update({
+  id: '/practice/',
+  path: '/practice/',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentPracticeConceptIdRoute =
+  StudentPracticeConceptIdRouteImport.update({
+    id: '/practice/$conceptId',
+    path: '/practice/$conceptId',
+    getParentRoute: () => StudentRoute,
+  } as any)
+const StudentResultsIndexRoute = StudentResultsIndexRouteImport.update({
+  id: '/results/',
+  path: '/results/',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentResultsAssessmentIdRoute =
+  StudentResultsAssessmentIdRouteImport.update({
+    id: '/results/$assessmentId',
+    path: '/results/$assessmentId',
+    getParentRoute: () => StudentRoute,
+  } as any)
 const TeacherAnalyticsIndexRoute = TeacherAnalyticsIndexRouteImport.update({
   id: '/analytics/',
   path: '/analytics/',
@@ -165,12 +198,17 @@ export interface FileRoutesByFullPath {
   '/principal/': typeof PrincipalIndexRoute
   '/student/': typeof StudentIndexRoute
   '/teacher/': typeof TeacherIndexRoute
+  '/student/assessments/$assessmentId': typeof StudentAssessmentsAssessmentIdRoute
+  '/student/practice/$conceptId': typeof StudentPracticeConceptIdRoute
+  '/student/results/$assessmentId': typeof StudentResultsAssessmentIdRoute
   '/teacher/analytics/gaps': typeof TeacherAnalyticsGapsRoute
   '/teacher/assessments/$assessmentId': typeof TeacherAssessmentsAssessmentIdRoute
   '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
   '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
   '/teacher/materials/$materialId': typeof TeacherMaterialsMaterialIdRoute
   '/student/assessments/': typeof StudentAssessmentsIndexRoute
+  '/student/practice/': typeof StudentPracticeIndexRoute
+  '/student/results/': typeof StudentResultsIndexRoute
   '/teacher/analytics/': typeof TeacherAnalyticsIndexRoute
   '/teacher/assessments/': typeof TeacherAssessmentsIndexRoute
   '/teacher/classes/': typeof TeacherClassesIndexRoute
@@ -187,12 +225,17 @@ export interface FileRoutesByTo {
   '/principal': typeof PrincipalIndexRoute
   '/student': typeof StudentIndexRoute
   '/teacher': typeof TeacherIndexRoute
+  '/student/assessments/$assessmentId': typeof StudentAssessmentsAssessmentIdRoute
+  '/student/practice/$conceptId': typeof StudentPracticeConceptIdRoute
+  '/student/results/$assessmentId': typeof StudentResultsAssessmentIdRoute
   '/teacher/analytics/gaps': typeof TeacherAnalyticsGapsRoute
   '/teacher/assessments/$assessmentId': typeof TeacherAssessmentsAssessmentIdRoute
   '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
   '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
   '/teacher/materials/$materialId': typeof TeacherMaterialsMaterialIdRoute
   '/student/assessments': typeof StudentAssessmentsIndexRoute
+  '/student/practice': typeof StudentPracticeIndexRoute
+  '/student/results': typeof StudentResultsIndexRoute
   '/teacher/analytics': typeof TeacherAnalyticsIndexRoute
   '/teacher/assessments': typeof TeacherAssessmentsIndexRoute
   '/teacher/classes': typeof TeacherClassesIndexRoute
@@ -213,12 +256,17 @@ export interface FileRoutesById {
   '/principal/': typeof PrincipalIndexRoute
   '/student/': typeof StudentIndexRoute
   '/teacher/': typeof TeacherIndexRoute
+  '/student/assessments/$assessmentId': typeof StudentAssessmentsAssessmentIdRoute
+  '/student/practice/$conceptId': typeof StudentPracticeConceptIdRoute
+  '/student/results/$assessmentId': typeof StudentResultsAssessmentIdRoute
   '/teacher/analytics/gaps': typeof TeacherAnalyticsGapsRoute
   '/teacher/assessments/$assessmentId': typeof TeacherAssessmentsAssessmentIdRoute
   '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
   '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
   '/teacher/materials/$materialId': typeof TeacherMaterialsMaterialIdRoute
   '/student/assessments/': typeof StudentAssessmentsIndexRoute
+  '/student/practice/': typeof StudentPracticeIndexRoute
+  '/student/results/': typeof StudentResultsIndexRoute
   '/teacher/analytics/': typeof TeacherAnalyticsIndexRoute
   '/teacher/assessments/': typeof TeacherAssessmentsIndexRoute
   '/teacher/classes/': typeof TeacherClassesIndexRoute
@@ -240,12 +288,17 @@ export interface FileRouteTypes {
     | '/principal/'
     | '/student/'
     | '/teacher/'
+    | '/student/assessments/$assessmentId'
+    | '/student/practice/$conceptId'
+    | '/student/results/$assessmentId'
     | '/teacher/analytics/gaps'
     | '/teacher/assessments/$assessmentId'
     | '/teacher/assessments/new'
     | '/teacher/classes/$classId'
     | '/teacher/materials/$materialId'
     | '/student/assessments/'
+    | '/student/practice/'
+    | '/student/results/'
     | '/teacher/analytics/'
     | '/teacher/assessments/'
     | '/teacher/classes/'
@@ -262,12 +315,17 @@ export interface FileRouteTypes {
     | '/principal'
     | '/student'
     | '/teacher'
+    | '/student/assessments/$assessmentId'
+    | '/student/practice/$conceptId'
+    | '/student/results/$assessmentId'
     | '/teacher/analytics/gaps'
     | '/teacher/assessments/$assessmentId'
     | '/teacher/assessments/new'
     | '/teacher/classes/$classId'
     | '/teacher/materials/$materialId'
     | '/student/assessments'
+    | '/student/practice'
+    | '/student/results'
     | '/teacher/analytics'
     | '/teacher/assessments'
     | '/teacher/classes'
@@ -287,12 +345,17 @@ export interface FileRouteTypes {
     | '/principal/'
     | '/student/'
     | '/teacher/'
+    | '/student/assessments/$assessmentId'
+    | '/student/practice/$conceptId'
+    | '/student/results/$assessmentId'
     | '/teacher/analytics/gaps'
     | '/teacher/assessments/$assessmentId'
     | '/teacher/assessments/new'
     | '/teacher/classes/$classId'
     | '/teacher/materials/$materialId'
     | '/student/assessments/'
+    | '/student/practice/'
+    | '/student/results/'
     | '/teacher/analytics/'
     | '/teacher/assessments/'
     | '/teacher/classes/'
@@ -408,6 +471,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentAssessmentsIndexRouteImport
       parentRoute: typeof StudentRoute
     }
+    '/student/assessments/$assessmentId': {
+      id: '/student/assessments/$assessmentId'
+      path: '/assessments/$assessmentId'
+      fullPath: '/student/assessments/$assessmentId'
+      preLoaderRoute: typeof StudentAssessmentsAssessmentIdRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/practice/': {
+      id: '/student/practice/'
+      path: '/practice'
+      fullPath: '/student/practice/'
+      preLoaderRoute: typeof StudentPracticeIndexRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/practice/$conceptId': {
+      id: '/student/practice/$conceptId'
+      path: '/practice/$conceptId'
+      fullPath: '/student/practice/$conceptId'
+      preLoaderRoute: typeof StudentPracticeConceptIdRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/results/': {
+      id: '/student/results/'
+      path: '/results'
+      fullPath: '/student/results/'
+      preLoaderRoute: typeof StudentResultsIndexRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/results/$assessmentId': {
+      id: '/student/results/$assessmentId'
+      path: '/results/$assessmentId'
+      fullPath: '/student/results/$assessmentId'
+      preLoaderRoute: typeof StudentResultsAssessmentIdRouteImport
+      parentRoute: typeof StudentRoute
+    }
     '/teacher/analytics/': {
       id: '/teacher/analytics/'
       path: '/analytics'
@@ -490,14 +588,24 @@ interface StudentRouteChildren {
   StudentClassesRoute: typeof StudentClassesRoute
   StudentDashboardRoute: typeof StudentDashboardRoute
   StudentIndexRoute: typeof StudentIndexRoute
+  StudentAssessmentsAssessmentIdRoute: typeof StudentAssessmentsAssessmentIdRoute
+  StudentPracticeConceptIdRoute: typeof StudentPracticeConceptIdRoute
+  StudentResultsAssessmentIdRoute: typeof StudentResultsAssessmentIdRoute
   StudentAssessmentsIndexRoute: typeof StudentAssessmentsIndexRoute
+  StudentPracticeIndexRoute: typeof StudentPracticeIndexRoute
+  StudentResultsIndexRoute: typeof StudentResultsIndexRoute
 }
 
 const StudentRouteChildren: StudentRouteChildren = {
   StudentClassesRoute: StudentClassesRoute,
   StudentDashboardRoute: StudentDashboardRoute,
   StudentIndexRoute: StudentIndexRoute,
+  StudentAssessmentsAssessmentIdRoute: StudentAssessmentsAssessmentIdRoute,
+  StudentPracticeConceptIdRoute: StudentPracticeConceptIdRoute,
+  StudentResultsAssessmentIdRoute: StudentResultsAssessmentIdRoute,
   StudentAssessmentsIndexRoute: StudentAssessmentsIndexRoute,
+  StudentPracticeIndexRoute: StudentPracticeIndexRoute,
+  StudentResultsIndexRoute: StudentResultsIndexRoute,
 }
 
 const StudentRouteWithChildren =
