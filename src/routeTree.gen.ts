@@ -17,6 +17,7 @@ import { Route as StudentRouteImport } from './routes/student'
 import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as TeacherDashboardRouteImport } from './routes/teacher.dashboard'
 import { Route as TeacherAnalyticsIndexRouteImport } from './routes/teacher.analytics.index'
+import { Route as TeacherAnalyticsGapsRouteImport } from './routes/teacher.analytics.gaps'
 import { Route as TeacherAssessmentsIndexRouteImport } from './routes/teacher.assessments.index'
 import { Route as TeacherAssessmentsAssessmentIdRouteImport } from './routes/teacher.assessments.$assessmentId'
 import { Route as TeacherAssessmentsNewRouteImport } from './routes/teacher.assessments.new'
@@ -65,6 +66,11 @@ const TeacherAnalyticsIndexRoute = TeacherAnalyticsIndexRouteImport.update({
   path: '/analytics/',
   getParentRoute: () => TeacherRoute,
 } as any)
+const TeacherAnalyticsGapsRoute = TeacherAnalyticsGapsRouteImport.update({
+  id: '/analytics/gaps',
+  path: '/analytics/gaps',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const TeacherAssessmentsIndexRoute = TeacherAssessmentsIndexRouteImport.update({
   id: '/assessments/',
   path: '/assessments/',
@@ -111,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/student': typeof StudentRoute
   '/teacher': typeof TeacherRouteWithChildren
   '/teacher/dashboard': typeof TeacherDashboardRoute
+  '/teacher/analytics/gaps': typeof TeacherAnalyticsGapsRoute
   '/teacher/assessments/$assessmentId': typeof TeacherAssessmentsAssessmentIdRoute
   '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
   '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/student': typeof StudentRoute
   '/teacher': typeof TeacherRouteWithChildren
   '/teacher/dashboard': typeof TeacherDashboardRoute
+  '/teacher/analytics/gaps': typeof TeacherAnalyticsGapsRoute
   '/teacher/assessments/$assessmentId': typeof TeacherAssessmentsAssessmentIdRoute
   '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
   '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
@@ -146,6 +154,7 @@ export interface FileRoutesById {
   '/student': typeof StudentRoute
   '/teacher': typeof TeacherRouteWithChildren
   '/teacher/dashboard': typeof TeacherDashboardRoute
+  '/teacher/analytics/gaps': typeof TeacherAnalyticsGapsRoute
   '/teacher/assessments/$assessmentId': typeof TeacherAssessmentsAssessmentIdRoute
   '/teacher/assessments/new': typeof TeacherAssessmentsNewRoute
   '/teacher/classes/$classId': typeof TeacherClassesClassIdRoute
@@ -165,6 +174,7 @@ export interface FileRouteTypes {
     | '/student'
     | '/teacher'
     | '/teacher/dashboard'
+    | '/teacher/analytics/gaps'
     | '/teacher/assessments/$assessmentId'
     | '/teacher/assessments/new'
     | '/teacher/classes/$classId'
@@ -182,6 +192,7 @@ export interface FileRouteTypes {
     | '/student'
     | '/teacher'
     | '/teacher/dashboard'
+    | '/teacher/analytics/gaps'
     | '/teacher/assessments/$assessmentId'
     | '/teacher/assessments/new'
     | '/teacher/classes/$classId'
@@ -199,6 +210,7 @@ export interface FileRouteTypes {
     | '/student'
     | '/teacher'
     | '/teacher/dashboard'
+    | '/teacher/analytics/gaps'
     | '/teacher/assessments/$assessmentId'
     | '/teacher/assessments/new'
     | '/teacher/classes/$classId'
@@ -276,6 +288,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeacherAnalyticsIndexRouteImport
       parentRoute: typeof TeacherRoute
     }
+    '/teacher/analytics/gaps': {
+      id: '/teacher/analytics/gaps'
+      path: '/analytics/gaps'
+      fullPath: '/teacher/analytics/gaps'
+      preLoaderRoute: typeof TeacherAnalyticsGapsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/teacher/assessments/': {
       id: '/teacher/assessments/'
       path: '/assessments'
@@ -330,6 +349,7 @@ declare module '@tanstack/react-router' {
 
 interface TeacherRouteChildren {
   TeacherDashboardRoute: typeof TeacherDashboardRoute
+  TeacherAnalyticsGapsRoute: typeof TeacherAnalyticsGapsRoute
   TeacherAssessmentsAssessmentIdRoute: typeof TeacherAssessmentsAssessmentIdRoute
   TeacherAssessmentsNewRoute: typeof TeacherAssessmentsNewRoute
   TeacherClassesClassIdRoute: typeof TeacherClassesClassIdRoute
@@ -342,6 +362,7 @@ interface TeacherRouteChildren {
 
 const TeacherRouteChildren: TeacherRouteChildren = {
   TeacherDashboardRoute: TeacherDashboardRoute,
+  TeacherAnalyticsGapsRoute: TeacherAnalyticsGapsRoute,
   TeacherAssessmentsAssessmentIdRoute: TeacherAssessmentsAssessmentIdRoute,
   TeacherAssessmentsNewRoute: TeacherAssessmentsNewRoute,
   TeacherClassesClassIdRoute: TeacherClassesClassIdRoute,
