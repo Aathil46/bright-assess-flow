@@ -16,6 +16,13 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as PrincipalIndexRouteImport } from './routes/principal.index'
+import { Route as PrincipalAiReviewRouteImport } from './routes/principal.ai-review'
+import { Route as PrincipalAssessmentsRouteImport } from './routes/principal.assessments'
+import { Route as PrincipalClassesRouteImport } from './routes/principal.classes'
+import { Route as PrincipalOverviewRouteImport } from './routes/principal.overview'
+import { Route as PrincipalTeachersRouteImport } from './routes/principal.teachers'
+import { Route as PrincipalWeakConceptsRouteImport } from './routes/principal.weak-concepts'
+import { Route as PrincipalWeakStudentsRouteImport } from './routes/principal.weak-students'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
 import { Route as StudentClassesRouteImport } from './routes/student.classes'
 import { Route as StudentDashboardRouteImport } from './routes/student.dashboard'
@@ -71,6 +78,41 @@ const TeacherRoute = TeacherRouteImport.update({
 const PrincipalIndexRoute = PrincipalIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => PrincipalRoute,
+} as any)
+const PrincipalAiReviewRoute = PrincipalAiReviewRouteImport.update({
+  id: '/ai-review',
+  path: '/ai-review',
+  getParentRoute: () => PrincipalRoute,
+} as any)
+const PrincipalAssessmentsRoute = PrincipalAssessmentsRouteImport.update({
+  id: '/assessments',
+  path: '/assessments',
+  getParentRoute: () => PrincipalRoute,
+} as any)
+const PrincipalClassesRoute = PrincipalClassesRouteImport.update({
+  id: '/classes',
+  path: '/classes',
+  getParentRoute: () => PrincipalRoute,
+} as any)
+const PrincipalOverviewRoute = PrincipalOverviewRouteImport.update({
+  id: '/overview',
+  path: '/overview',
+  getParentRoute: () => PrincipalRoute,
+} as any)
+const PrincipalTeachersRoute = PrincipalTeachersRouteImport.update({
+  id: '/teachers',
+  path: '/teachers',
+  getParentRoute: () => PrincipalRoute,
+} as any)
+const PrincipalWeakConceptsRoute = PrincipalWeakConceptsRouteImport.update({
+  id: '/weak-concepts',
+  path: '/weak-concepts',
+  getParentRoute: () => PrincipalRoute,
+} as any)
+const PrincipalWeakStudentsRoute = PrincipalWeakStudentsRouteImport.update({
+  id: '/weak-students',
+  path: '/weak-students',
   getParentRoute: () => PrincipalRoute,
 } as any)
 const StudentIndexRoute = StudentIndexRouteImport.update({
@@ -191,6 +233,13 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
+  '/principal/ai-review': typeof PrincipalAiReviewRoute
+  '/principal/assessments': typeof PrincipalAssessmentsRoute
+  '/principal/classes': typeof PrincipalClassesRoute
+  '/principal/overview': typeof PrincipalOverviewRoute
+  '/principal/teachers': typeof PrincipalTeachersRoute
+  '/principal/weak-concepts': typeof PrincipalWeakConceptsRoute
+  '/principal/weak-students': typeof PrincipalWeakStudentsRoute
   '/student/classes': typeof StudentClassesRoute
   '/student/dashboard': typeof StudentDashboardRoute
   '/teacher/dashboard': typeof TeacherDashboardRoute
@@ -218,6 +267,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/signup': typeof SignupRoute
+  '/principal/ai-review': typeof PrincipalAiReviewRoute
+  '/principal/assessments': typeof PrincipalAssessmentsRoute
+  '/principal/classes': typeof PrincipalClassesRoute
+  '/principal/overview': typeof PrincipalOverviewRoute
+  '/principal/teachers': typeof PrincipalTeachersRoute
+  '/principal/weak-concepts': typeof PrincipalWeakConceptsRoute
+  '/principal/weak-students': typeof PrincipalWeakStudentsRoute
   '/student/classes': typeof StudentClassesRoute
   '/student/dashboard': typeof StudentDashboardRoute
   '/teacher/dashboard': typeof TeacherDashboardRoute
@@ -249,6 +305,13 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/student': typeof StudentRouteWithChildren
   '/teacher': typeof TeacherRouteWithChildren
+  '/principal/ai-review': typeof PrincipalAiReviewRoute
+  '/principal/assessments': typeof PrincipalAssessmentsRoute
+  '/principal/classes': typeof PrincipalClassesRoute
+  '/principal/overview': typeof PrincipalOverviewRoute
+  '/principal/teachers': typeof PrincipalTeachersRoute
+  '/principal/weak-concepts': typeof PrincipalWeakConceptsRoute
+  '/principal/weak-students': typeof PrincipalWeakStudentsRoute
   '/student/classes': typeof StudentClassesRoute
   '/student/dashboard': typeof StudentDashboardRoute
   '/teacher/dashboard': typeof TeacherDashboardRoute
@@ -281,6 +344,13 @@ export interface FileRouteTypes {
     | '/signup'
     | '/student'
     | '/teacher'
+    | '/principal/ai-review'
+    | '/principal/assessments'
+    | '/principal/classes'
+    | '/principal/overview'
+    | '/principal/teachers'
+    | '/principal/weak-concepts'
+    | '/principal/weak-students'
     | '/student/classes'
     | '/student/dashboard'
     | '/teacher/dashboard'
@@ -308,6 +378,13 @@ export interface FileRouteTypes {
     | '/'
     | '/forgot-password'
     | '/signup'
+    | '/principal/ai-review'
+    | '/principal/assessments'
+    | '/principal/classes'
+    | '/principal/overview'
+    | '/principal/teachers'
+    | '/principal/weak-concepts'
+    | '/principal/weak-students'
     | '/student/classes'
     | '/student/dashboard'
     | '/teacher/dashboard'
@@ -338,6 +415,13 @@ export interface FileRouteTypes {
     | '/signup'
     | '/student'
     | '/teacher'
+    | '/principal/ai-review'
+    | '/principal/assessments'
+    | '/principal/classes'
+    | '/principal/overview'
+    | '/principal/teachers'
+    | '/principal/weak-concepts'
+    | '/principal/weak-students'
     | '/student/classes'
     | '/student/dashboard'
     | '/teacher/dashboard'
@@ -420,6 +504,55 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/principal/'
       preLoaderRoute: typeof PrincipalIndexRouteImport
+      parentRoute: typeof PrincipalRoute
+    }
+    '/principal/ai-review': {
+      id: '/principal/ai-review'
+      path: '/ai-review'
+      fullPath: '/principal/ai-review'
+      preLoaderRoute: typeof PrincipalAiReviewRouteImport
+      parentRoute: typeof PrincipalRoute
+    }
+    '/principal/assessments': {
+      id: '/principal/assessments'
+      path: '/assessments'
+      fullPath: '/principal/assessments'
+      preLoaderRoute: typeof PrincipalAssessmentsRouteImport
+      parentRoute: typeof PrincipalRoute
+    }
+    '/principal/classes': {
+      id: '/principal/classes'
+      path: '/classes'
+      fullPath: '/principal/classes'
+      preLoaderRoute: typeof PrincipalClassesRouteImport
+      parentRoute: typeof PrincipalRoute
+    }
+    '/principal/overview': {
+      id: '/principal/overview'
+      path: '/overview'
+      fullPath: '/principal/overview'
+      preLoaderRoute: typeof PrincipalOverviewRouteImport
+      parentRoute: typeof PrincipalRoute
+    }
+    '/principal/teachers': {
+      id: '/principal/teachers'
+      path: '/teachers'
+      fullPath: '/principal/teachers'
+      preLoaderRoute: typeof PrincipalTeachersRouteImport
+      parentRoute: typeof PrincipalRoute
+    }
+    '/principal/weak-concepts': {
+      id: '/principal/weak-concepts'
+      path: '/weak-concepts'
+      fullPath: '/principal/weak-concepts'
+      preLoaderRoute: typeof PrincipalWeakConceptsRouteImport
+      parentRoute: typeof PrincipalRoute
+    }
+    '/principal/weak-students': {
+      id: '/principal/weak-students'
+      path: '/weak-students'
+      fullPath: '/principal/weak-students'
+      preLoaderRoute: typeof PrincipalWeakStudentsRouteImport
       parentRoute: typeof PrincipalRoute
     }
     '/student/': {
@@ -573,10 +706,24 @@ declare module '@tanstack/react-router' {
 }
 
 interface PrincipalRouteChildren {
+  PrincipalAiReviewRoute: typeof PrincipalAiReviewRoute
+  PrincipalAssessmentsRoute: typeof PrincipalAssessmentsRoute
+  PrincipalClassesRoute: typeof PrincipalClassesRoute
+  PrincipalOverviewRoute: typeof PrincipalOverviewRoute
+  PrincipalTeachersRoute: typeof PrincipalTeachersRoute
+  PrincipalWeakConceptsRoute: typeof PrincipalWeakConceptsRoute
+  PrincipalWeakStudentsRoute: typeof PrincipalWeakStudentsRoute
   PrincipalIndexRoute: typeof PrincipalIndexRoute
 }
 
 const PrincipalRouteChildren: PrincipalRouteChildren = {
+  PrincipalAiReviewRoute: PrincipalAiReviewRoute,
+  PrincipalAssessmentsRoute: PrincipalAssessmentsRoute,
+  PrincipalClassesRoute: PrincipalClassesRoute,
+  PrincipalOverviewRoute: PrincipalOverviewRoute,
+  PrincipalTeachersRoute: PrincipalTeachersRoute,
+  PrincipalWeakConceptsRoute: PrincipalWeakConceptsRoute,
+  PrincipalWeakStudentsRoute: PrincipalWeakStudentsRoute,
   PrincipalIndexRoute: PrincipalIndexRoute,
 }
 
